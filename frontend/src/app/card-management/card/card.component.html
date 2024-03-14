@@ -1,44 +1,20 @@
 <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+  <h1 class="text-tertiary text-3xl font-bold text-center mb-5">Add a card</h1>
   <div>
-    <label for="name">Card Name:</label>
-    <input type="text" formControlName="name" />
-    <div *ngIf="cardForm.get('name')?.errors && (cardForm.get('name')?.dirty || cardForm.get('name')?.touched)">
-      <div *ngIf="cardForm.get('name')?.errors?.['required']">Card name is required.</div>
-    </div>
+    <label class="block text-tertiary text-xs font-bold mb-2" for="name">Name</label>
+    <input formControlName="name" type="text" placeholder="Name" class="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 rounded-xl border border-gray-500 leading-tight focus:outline-none focus:border-gray-700" required />
   </div>
   <div>
-    <label for="code">Card Code:</label>
-    <input type="text" formControlName="code" />
-    <div *ngIf="cardForm.get('code')?.errors && (cardForm.get('code')?.dirty || cardForm.get('code')?.touched)">
-      <div *ngIf="cardForm.get('code')?.errors?.['required']">Card code is required.</div>
-      <div *ngIf="cardForm.get('code')?.errors?.['minlength'] || cardForm.get('code')?.errors?.['maxlength']">Card code must be 16 digits.</div>
-    </div>
+    <label class="block text-tertiary text-xs font-bold mb-2" for="code">Code</label>
+    <input formControlName="code" type="text" placeholder="1234 5678 9012 3456" class="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 rounded-xl border border-gray-500 leading-tight focus:outline-none focus:border-gray-700" required />
   </div>
   <div>
-    <label for="ccv">CCV:</label>
-    <input type="text" formControlName="ccv" />
-    <div *ngIf="cardForm.get('ccv')?.errors && (cardForm.get('ccv')?.dirty || cardForm.get('ccv')?.touched)">
-      <div *ngIf="cardForm.get('ccv')?.errors?.['required']">CCV is required.</div>
-      <div *ngIf="cardForm.get('ccv')?.errors?.['minlength'] || cardForm.get('ccv')?.errors?.['maxlength']">CCV must be 3 digits.</div>
-    </div>
+    <label class="block text-tertiary text-xs font-bold mb-2" for="ccv">CCV</label>
+    <input formControlName="ccv" type="text" placeholder="123" class="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 rounded-xl border border-gray-500 leading-tight focus:outline-none focus:border-gray-700" required />
   </div>
-  <div formGroupName="expiration">
-    <div>
-      <label for="month">Expiration Month:</label>
-      <input type="number" formControlName="month" />
-      <div *ngIf="cardForm.get('expiration.month')?.errors && (cardForm.get('expiration.month')?.dirty || cardForm.get('expiration.month')?.touched)">
-        <div *ngIf="cardForm.get('expiration.month')?.errors?.['required']">Expiration month is required.</div>
-        <div *ngIf="cardForm.get('expiration.month')?.errors?.['min'] || cardForm.get('expiration.month')?.errors?.['max']">Expiration month must be between 1 and 12.</div>
-      </div>
-    </div>
-    <div>
-      <label for="year">Expiration Year:</label>
-      <input type="number" formControlName="year" />
-      <div *ngIf="cardForm.get('expiration.year')?.errors && (cardForm.get('expiration.year')?.dirty || cardForm.get('expiration.year')?.touched)">
-        <div *ngIf="cardForm.get('expiration.year')?.errors?.['required']">Expiration year is required.</div>
-        <div *ngIf="cardForm.get('expiration.year')?.errors?.['min'] || cardForm.get('expiration.year')?.errors?.['max']">Expiration year must be greater than or equal to the current year.</div>
-      </div>
-    </div>
+  <div>
+    <label class="block text-tertiary text-xs font-bold mb-2" for="expiration">Month/Year</label>
+    <input formControlName="expiration" type="text" placeholder="MM/YY" class="block appearance-none w-full bg-white text-gray-700 py-3 px-4 pr-8 rounded-xl border border-gray-500 leading-tight focus:outline-none focus:border-gray-700" required />
   </div>
-  <button type="submit">Submit</button>
+  <button type="submit" [ngClass]="{ 'bg-tertiary': cardForm.valid, 'cursor-not-allowed opacity-50': !cardForm.valid }" [disabled]="!cardForm.valid" class="mt-2 px-4 py-2 rounded text-white">Add Card</button>
 </form>

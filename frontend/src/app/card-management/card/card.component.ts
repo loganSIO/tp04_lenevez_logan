@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Card } from '../cards';
+import { CardsService } from '../cards.service';
 
 @Component({
   selector: 'app-card-management',
@@ -7,35 +9,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-  cardForm!: FormGroup;
+  cardForm  = this.fb.group({
+    name: ['', [Validators.required]],
+    code: ['', [Validators.required, Validators.pattern('^[0-9]{16}$')]],
+    ccv: ['', [Validators.required, Validators.pattern('^[0-9]{3}$')]],
+    expiration: ['', [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])\/[0-9]{2}$')]],
+  });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private fb: FormBuilder, private cardsService: CardsService) { }
 
   ngOnInit(): void {
-    this.cardForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      code: ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
-      ccv: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
-      expiration: this.formBuilder.group({
-        month: ['', [Validators.required, Validators.min(1), Validators.max(12)]],
-        year: ['', [Validators.required, Validators.min(new Date().getFullYear()), Validators.max(9999)]]
-      })
-    });
+
   }
 
-  // Getter for easy access to form fields
-  get f() { return this.cardForm.controls; }
-
-  onSubmit() {
-    // Check form validity
-    if (this.cardForm.invalid) {
-      return;
-    }
-
-    // Retrieve form data
-    const formData = this.cardForm.value;
-    console.log(formData);
-
-    // Send data to backend or perform other actions
+  onSubmit(): void {
+    const id = Math.floor(Math.random() * 1000);
+    this.cardsService.addCard({ id, ...this.cardForm.value } as Card);
   }
 }
