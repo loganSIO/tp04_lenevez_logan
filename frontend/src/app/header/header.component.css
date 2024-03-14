@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  justify-content: space-between; /* Items are evenly distributed */
+  align-items: center; /* Centers the content vertically */
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Aligns the logo vertically */
+}
+
+.logo img {
+  width: 25%;
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Adjust margin as needed */
+}
+
+.navbar {
+  /* Move navbar to the right */
+  margin-left: auto;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  display: inline-block;
+  margin-left: 10px; /* Adjust margin between navigation items as needed */
+}
+
+.nav-list li:first-child {
+  margin-left: 0; /* Remove margin for the first navigation item */
+}
+
+.nav-list li a {
+  color: black; /* Black color for navigation buttons */
+}

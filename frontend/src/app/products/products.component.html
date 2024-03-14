@@ -1,0 +1,26 @@
+<div>
+  <h1>Products Manga Page</h1>
+  <p>Welcome to the Products Manga Page! Here you can search for your favorite manga products.</p>
+
+  <form [formGroup]="searchForm">
+    <input type="text" formControlName="searchQuery" placeholder="Search...">
+
+    <select formControlName="editor">
+      <option value="">- Filter by Editors-</option>
+      @for (editor of editors | async; track editor) {
+        <option>{{ editor }}</option>
+      }
+    </select>
+  </form>
+
+  <div class="grid">
+    @for (product of products | async; track product) {
+      <div class="card">
+        <h2>{{ product.title }}</h2>
+        <p>{{ product.artist }}</p>
+        <p>{{ product.editor }}</p>
+        <p>{{ product.price }}</p>
+      </div>
+    }
+  </div>
+</div>

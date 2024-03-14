@@ -1,0 +1,217 @@
+<h2>Register</h2>
+<p>Please register below:</p>
+<form
+  id="register-form"
+  action=""
+  method="get"
+  (ngSubmit)="onSubmit(registerForm)"
+  #registerForm="ngForm"
+>
+  <select id="civility" name="civility" [(ngModel)]="model.civility" required>
+    <option *ngFor="let civility of civilities | keyvalue" [value]="civility.key">{{ civility.value }}</option>
+  </select>
+  <fieldset class="grid">
+    <div>
+      <input
+        type="text"
+        id="surname"
+        aria-label="Surname"
+        placeholder="Surname"
+        autocomplete="surname"
+        name="surname"
+        [(ngModel)]="model.surname"
+        required
+        #surname="ngModel"
+        attr.aria-invalid="{{ surname.touched ? surname.invalid : null }}"
+      />
+      <small *ngIf="surname.invalid && surname.touched">
+        This field is required
+      </small>
+    </div>
+    <div>
+      <input
+        type="text"
+        id="name"
+        aria-label="Name"
+        placeholder="Name"
+        autocomplete="name"
+        name="name"
+        [(ngModel)]="model.name"
+        required
+        #name="ngModel"
+        attr.aria-invalid="{{ name.touched ? name.invalid : null }}"
+
+      />
+      <small *ngIf="name.invalid && name.touched">
+        This field is required
+      </small>
+    </div>
+  </fieldset>
+  <div>
+    <input
+      type="text"
+      id="address"
+      aria-label="Address"
+      placeholder="Address"
+      autocomplete="address"
+      name="address"
+      [(ngModel)]="model.address"
+      required
+      #address="ngModel"
+      attr.aria-invalid="{{ address.touched ? address.invalid : null }}"
+    />
+    <small *ngIf="address.invalid && address.touched">
+      This field is required
+    </small>
+  </div>
+  <fieldset class="grid">
+    <div>
+      <input
+        type="text"
+        id="postal-code"
+        aria-label="Postal Code"
+        placeholder="Postal Code"
+        autocomplete="postalcode"
+        name="postal-code"
+        [(ngModel)]="model.postalCode"
+        required
+        pattern="^\d{5}$"
+        #postalCode="ngModel"
+        attr.aria-invalid="{{ postalCode.touched ? postalCode.invalid : null }}"
+      />
+      <small *ngIf="postalCode.invalid && postalCode.touched">
+        The postal code must consist of 5 digits
+      </small>
+    </div>
+    <div>
+      <input
+        type="text"
+        id="city"
+        aria-label="City"
+        placeholder="City"
+        autocomplete="city"
+        name="city"
+        [(ngModel)]="model.city"
+        required
+        #city="ngModel"
+        attr.aria-invalid="{{ city.touched ? city.invalid : null }}"
+      />
+      <small *ngIf="city.invalid && city.touched">
+        This field is required
+      </small>
+    </div>
+  </fieldset>
+  <select
+    type="text"
+    id="country"
+    aria-label="Country"
+    placeholder="Country"
+    autocomplete="country"
+    name="country"
+    [(ngModel)]="model.country"
+    required
+    #country="ngModel"
+    attr.aria-invalid="{{ country.touched ? country.invalid : null }}"
+  >
+    <option *ngFor="let country of countries | keyvalue" [value]="country.key">{{ country.value }}</option>
+  </select>
+  <fieldset class="grid">
+    <div>
+      <input
+        type="email"
+        id="email"
+        aria-label="Email"
+        placeholder="Email"
+        auutocomplete="email"
+        name="email"
+        [(ngModel)]="model.email"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        #email="ngModel"
+        attr.aria-invalid="{{ email.touched ? email.invalid : null }}"
+      />
+      <small *ngIf="email.errors?.['email'] && email.touched">
+        Please enter a valid email address
+      </small>
+    </div>
+    <div>
+      <input
+        type="phone"
+        id="phone"
+        aria-label="Phone"
+        placeholder="Phone"
+        autoomplete="phone"
+        name="phone"
+        [(ngModel)]="model.phone"
+        required
+        pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
+        #phone="ngModel"
+        attr.aria-invalid="{{ phone.touched ? phone.invalid : null }}"
+      />
+      <small *ngIf="phone.invalid && phone.touched">
+        Please enter a valid phone number
+      </small>
+    </div>
+  </fieldset>
+  <div>
+    <input
+      type="text"
+      id="username"
+      aria-label="Username"
+      placeholder="Username"
+      autoomplete="username"
+      name="username"
+      [(ngModel)]="model.username"
+      required
+      #username="ngModel"
+      attr.aria-invalid="{{ username.touched ? username.invalid : null }}"
+    />
+    <small *ngIf="username.invalid && username.touched">
+      This field is required
+    </small>
+  </div>
+  <fieldset
+    class="grid"
+    ngModelGroup="passwords"
+    #passwords="ngModelGroup"
+    attr.aria-invalid="{{ passwords.touched ? true : null }}"
+    [appFieldMatchGroup]="['password', 'passwordConfirm']"
+  >
+    <div>
+      <input
+        type="password"
+        id="password"
+        aria-label="Password"
+        placeholder="Password"
+        autocomplete="password"
+        name="password"
+        [(ngModel)]="model.password"
+        required
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{12,}$"
+        #password="ngModel"
+        attr.aria-invalid="{{ password.touched ? password.invalid : null }}"
+      />
+      <small *ngIf="password.invalid && password.touched">
+        The password must contain at least 12 characters,
+        one upper case letter, one lower case letter and one number.
+      </small>
+    </div>
+    <div>
+      <input
+        type="password"
+        id="password-confirm"
+        aria-label="Confirm Password"
+        placeholder="Confirm Password"
+        autocomplete="password-confirm"
+        name="passwordConfirm"
+        [(ngModel)]="model.passwordConfirm"
+        required
+        #passwordConfirm="ngModel"
+        attr.aria-invalid="{{ passwordConfirm.touched ? passwords.invalid || passwordConfirm.invalid : null }}" />
+      <small *ngIf="passwordConfirm.touched && passwords.errors?.['fieldMatchGroup']">
+        Passwords do not match
+      </small>
+    </div>
+  </fieldset>
+  <button type="submit" [disabled]="!registerForm.valid">Register</button>
+</form>

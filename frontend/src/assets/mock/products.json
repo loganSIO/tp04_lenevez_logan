@@ -1,0 +1,12 @@
+[
+  {"title":"One Piece","artist":"Eichiiro Oda","editor":"Glénat","price":"6.85€"},
+  {"title":"Naruto","artist":"Masashi Kishimoto","editor":"Kana","price":"6.95€"},
+  {"title":"Attack on Titan","artist":"Hajime Isayama","editor":"Pika","price":"7.10€"},
+  {"title":"Dragon Ball","artist":"Akira Toriyama","editor":"Glénat","price":"8.85€"},
+  {"title":"Death Note","artist":"Tsugumi Ohba","editor":"Kana","price":"6.76€"},
+  {"title":"Bleach","artist":"Tite Kubo","editor":"Glénat","price":"6.88€"},
+  {"title":"My Hero Academia","artist":"Kohei Horikoshi","editor":"Ki-oon","price":"6.99€"},
+  {"title":"Fullmetal Alchemist","artist":"Hiromu Arakawa","editor":"Kurokawa","price":"6.00€"},
+  {"title":"Fairy Tail","artist":"Hiro Mashima","editor":"Pika","price":"6.15€"},
+  {"title":"Hunter x Hunter","artist":"Yoshihiro Togashi","editor":"Kana","price":"6.85€"}
+]

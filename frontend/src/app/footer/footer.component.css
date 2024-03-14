@@ -1,0 +1,9 @@
+.footer {
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-nav a {
+  color: black;
+  text-decoration: none;
+}
