@@ -1,0 +1,44 @@
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Card Name:</label>
+    <input type="text" formControlName="name" />
+    <div *ngIf="cardForm.get('name')?.errors && (cardForm.get('name')?.dirty || cardForm.get('name')?.touched)">
+      <div *ngIf="cardForm.get('name')?.errors?.['required']">Card name is required.</div>
+    </div>
+  </div>
+  <div>
+    <label for="code">Card Code:</label>
+    <input type="text" formControlName="code" />
+    <div *ngIf="cardForm.get('code')?.errors && (cardForm.get('code')?.dirty || cardForm.get('code')?.touched)">
+      <div *ngIf="cardForm.get('code')?.errors?.['required']">Card code is required.</div>
+      <div *ngIf="cardForm.get('code')?.errors?.['minlength'] || cardForm.get('code')?.errors?.['maxlength']">Card code must be 16 digits.</div>
+    </div>
+  </div>
+  <div>
+    <label for="ccv">CCV:</label>
+    <input type="text" formControlName="ccv" />
+    <div *ngIf="cardForm.get('ccv')?.errors && (cardForm.get('ccv')?.dirty || cardForm.get('ccv')?.touched)">
+      <div *ngIf="cardForm.get('ccv')?.errors?.['required']">CCV is required.</div>
+      <div *ngIf="cardForm.get('ccv')?.errors?.['minlength'] || cardForm.get('ccv')?.errors?.['maxlength']">CCV must be 3 digits.</div>
+    </div>
+  </div>
+  <div formGroupName="expiration">
+    <div>
+      <label for="month">Expiration Month:</label>
+      <input type="number" formControlName="month" />
+      <div *ngIf="cardForm.get('expiration.month')?.errors && (cardForm.get('expiration.month')?.dirty || cardForm.get('expiration.month')?.touched)">
+        <div *ngIf="cardForm.get('expiration.month')?.errors?.['required']">Expiration month is required.</div>
+        <div *ngIf="cardForm.get('expiration.month')?.errors?.['min'] || cardForm.get('expiration.month')?.errors?.['max']">Expiration month must be between 1 and 12.</div>
+      </div>
+    </div>
+    <div>
+      <label for="year">Expiration Year:</label>
+      <input type="number" formControlName="year" />
+      <div *ngIf="cardForm.get('expiration.year')?.errors && (cardForm.get('expiration.year')?.dirty || cardForm.get('expiration.year')?.touched)">
+        <div *ngIf="cardForm.get('expiration.year')?.errors?.['required']">Expiration year is required.</div>
+        <div *ngIf="cardForm.get('expiration.year')?.errors?.['min'] || cardForm.get('expiration.year')?.errors?.['max']">Expiration year must be greater than or equal to the current year.</div>
+      </div>
+    </div>
+  </div>
+  <button type="submit">Submit</button>
+</form>
